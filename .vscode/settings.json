@@ -1,4 +1,22 @@
 {
-	"typescript.tsdk": "node_modules/typescript/lib",
-	"typescript.enablePromptUseWorkspaceTsdk":true
+	"editor.formatOnSave": false, // 自动保存时格式化
+	"editor.defaultFormatter": "esbenp.prettier-vscode", // 设置 Prettier 为默认格式化工具
+	"prettier.useEditorConfig": false, // 不使用 .editorconfig 文件
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact"
+	],
+	"eslint.alwaysShowStatus": true, // 总是显示 ESLint 状态
+	"eslint.format.enable": true, // 启用 ESLint 格式化
+	"prettier-eslint": {
+		"enabled": false // 启用 prettier-eslint
+	},
+	"[vue]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	}
 }

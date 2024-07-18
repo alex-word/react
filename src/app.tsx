@@ -3,6 +3,8 @@ import styled from "styled-components"
 import React from "react"
 
 import "./app.less"
+import Class from "./components/Class"
+import LazyDemo from "./components/LazyDemo"
 
 export const App = () => {
   const routes = useRoutes([
@@ -10,7 +12,12 @@ export const App = () => {
       path: "/*",
       children: [
         {
+          path: "LazyDemo",
+          element: <LazyDemo />,
+        }, 
+        {
           path: "*",
+          element: <Class />,
           children: [],
         },
       ],

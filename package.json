@@ -2,7 +2,7 @@
   "name": "chat-ts",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "homepage": "https://mewhithcat.github.io/template-react-ts/",
   "scripts": {
     "start": "cross-env NODE_ENV=development BASE_ENV=development webpack-dev-server -c webpack/webpack.dev.js",
     "dev:test": "cross-env NODE_ENV=development BASE_ENV=test webpack-dev-server -c webpack/webpack.dev.js",
@@ -12,7 +12,9 @@
     "build:test": "cross-env NODE_ENV=production BASE_ENV=test webpack -c webpack/webpack.prod.js",
     "build:pre": "cross-env NODE_ENV=production BASE_ENV=pre webpack -c webpack/webpack.prod.js",
     "build:prod": "cross-env NODE_ENV=production BASE_ENV=production webpack -c webpack/webpack.prod.js",
-    "build:analy": "cross-env NODE_ENV=production BASE_ENV=production webpack -c webpack/webpack.analy.js"
+    "build:analy": "cross-env NODE_ENV=production BASE_ENV=production webpack -c webpack/webpack.analy.js",
+    "predeploy": "npm run build:prod",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
@@ -34,6 +36,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^5.0.1",
+    "gh-pages": "^6.1.1",
     "glob-all": "^3.3.1",
     "html-webpack-plugin": "^5.5.4",
     "less": "^4.2.0",

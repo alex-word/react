@@ -82,7 +82,7 @@ module.exports = merge(baseConfig, {
         standard: [/^ant-/], // 过滤以ant-开头的类名，哪怕没用到也不删除
       },
     }),
-     new CompressionPlugin({
+    new CompressionPlugin({
       test: /.(js|css)$/, // 只生成css,js压缩文件
       filename: '[path][base].gz', // 文件命名
       algorithm: 'gzip', // 压缩格式,默认是gzip
