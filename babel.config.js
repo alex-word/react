@@ -15,7 +15,12 @@ module.exports = {
         corejs: 3, // 配置使用core-js使用的版本
       },
     ],
-    "@babel/preset-react",
+    [
+      '@babel/preset-react',
+      {
+        runtime: 'automatic', 
+      },
+    ],
     "@babel/preset-typescript",
   ],
   plugins: [

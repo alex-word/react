@@ -1,10 +1,8 @@
 import { useRoutes, Navigate } from "react-router-dom"
 import styled from "styled-components"
-import React from "react"
 
 import "./app.less"
-import Class from "./components/Class"
-import LazyDemo from "./components/LazyDemo"
+import Login from "./pages/login"
 
 export const App = () => {
   const routes = useRoutes([
@@ -12,13 +10,13 @@ export const App = () => {
       path: "/*",
       children: [
         {
-          path: "LazyDemo",
-          element: <LazyDemo />,
-        }, 
+          path: "login",
+          element: <Login />,
+          children: [],
+        },
         {
           path: "*",
-          element: <Class />,
-          children: [],
+          element: <Login />,
         },
       ],
     },
