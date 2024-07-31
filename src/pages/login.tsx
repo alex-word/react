@@ -52,8 +52,13 @@ const Login = () => {
           <h2>欢迎来到<span>前端星球</span></h2>
           <p>提升你的<span>设计·编程</span>能力</p>
           <img src={registerImg} alt="登录" />
-          <p style={{ fontWeight: 'normal', fontSize: 14 }}>没有账号？</p>
-          <button id="register" ref={register} onClick={() => handleClick('register')}>去注册</button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 0 }}>
+            <div>没有账号？</div>
+            {/* <button id="register" ref={register} onClick={() => handleClick('register')}>  */}
+            <span style={{ color: '#435ee8' }} onClick={() => handleClick('register')}>
+              去注册</span>
+            {/* </button> */}
+          </div>
         </div>
       </div>
     </Container>
@@ -114,14 +119,16 @@ const Container = styled.div`
 /* 标题 */
 h1 {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 50px;
     /* 转换为大写 */
     text-transform: uppercase;
     color: #435ee8;
     /* 设置字间距 */
     letter-spacing: 3px;
 }
-
+.register-box h1{
+  margin-bottom: 20px;
+}
 input {
     /* 将输入框背景改为透明 */
     background-color: transparent;
@@ -129,7 +136,7 @@ input {
     color: #fff;
     border: 1.5px solid #D9D9D9;
     /* height: 32px; */
-    margin: 10px;
+    margin: 12px;
     border-radius: 6px;
     padding: 10px 4px;
     font-size: 14px;
@@ -228,12 +235,13 @@ input:focus::placeholder {
 }
 
 .con-box img {
-    width: 160px;
+    width: 120px;
     /* 之前写过 现在加上这两行即可 */
     /* 设置透明度 */
     opacity: 0.9;
     margin: 20px 0;
-    border-radius: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
 }
 
 .con-box button {
