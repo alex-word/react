@@ -2,14 +2,16 @@ import { styled } from "styled-components"
 import Banner from "@/assets/images/banner.jpg"
 import loginImg from "@/assets/images/login.jpg"
 import registerImg from "@/assets/images/register.jpg"
-import { useEffect, useRef } from "react";
-import { getPortList } from "@/api/user";
+import { useEffect, useRef, useState } from "react";
+import { getPortList, postLogin } from "@/api/user";
 const Login = () => {
   let login = useRef(null)
   // 绑定事件
   let formBox = useRef<any>(null)
   let registerBox = useRef<any>(null)
   let loginBox = useRef<any>(null)
+  let formParams = useRef({ username: '', password: '' })
+  const [loading, setLoading] = useState(false)
 
   const handleClick = (type: 'login' | 'register') => {
     // 表格盒子向右平移
@@ -22,9 +24,18 @@ const Login = () => {
       loginBox.current.classList.remove('hidden');
     }
   }
-  useEffect(()=>{
-    getPortList().catch(()=>{})
-  },[])
+  const handleLogin = () => {
+    postLogin(formParams.current).then(res => {
+      console.log(res);
+    })
+  }
+  useEffect(() => {
+    setLoading(true)
+    getPortList().catch((err) => {
+  console.log(err)
+     }
+  ).finally(() => { setLoading(false) })
+  }, [])
   return (
     <Container>
       <div className="container">
@@ -39,9 +50,9 @@ const Login = () => {
           </div>
           <div className="login-box" ref={loginBox}>
             <h1>login</h1>
-            <input type="text" name="用户名" placeholder="用户名" />
-            <input type="password" name="密码" placeholder="密码" />
-            <button>登 录</button>
+            <input type="text" name="用户名" placeholder="用户名" onChange={(e) => formParams.current.username = e.target.value} />
+            <input type="password" name="密码" placeholder="密码" onChange={(e) => formParams.current.password = e.target.value} />
+            <button onClick={handleLogin} disabled={loading}>登 录</button>
           </div>
         </div>
         <div className="con-box left">

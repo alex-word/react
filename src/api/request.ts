@@ -4,7 +4,7 @@ import { removeToken } from '@/redux/userSlice'
 const isProduction = process.env.NODE_ENV === 'production' ? true : false
 
 const request = axios.create({
-  baseURL: isProduction ? '/admin' : '/api',
+  baseURL: isProduction ? '/admin' : 'http://localhost:8888/',
   timeout: 5000,
 })
 
