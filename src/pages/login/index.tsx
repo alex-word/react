@@ -1,10 +1,10 @@
 import { styled } from "styled-components"
-import Banner from "../assets/images/banner.jpg"
-import loginImg from "../assets/images/login.jpg"
-import registerImg from "../assets/images/register.jpg"
-import { useRef } from "react";
+import Banner from "@/assets/images/banner.jpg"
+import loginImg from "@/assets/images/login.jpg"
+import registerImg from "@/assets/images/register.jpg"
+import { useEffect, useRef } from "react";
+import { getPortList } from "@/api/user";
 const Login = () => {
-  let register = useRef(null)
   let login = useRef(null)
   // 绑定事件
   let formBox = useRef<any>(null)
@@ -22,6 +22,9 @@ const Login = () => {
       loginBox.current.classList.remove('hidden');
     }
   }
+  useEffect(()=>{
+    getPortList().catch(()=>{})
+  },[])
   return (
     <Container>
       <div className="container">
@@ -76,9 +79,6 @@ const Container = styled.div`
     width: 620px;
     height: 400px;
     border-radius: 10px;
-    /* 阴影 */
-    /* box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1); */
-    /* 相对定位 */
     position: relative;
     z-index: 2;
     background-color:#e9f6ff;
@@ -92,13 +92,11 @@ const Container = styled.div`
     /* 上面突出来一小节 */
     top: -12px;
     left: 10px;
-    /* background-color: rgb(255, 205, 219); */
     background-color: #fff;
     width: 300px;
     height: 424px;
     z-index: 2;
     border-radius: 10px;
-    /* box-shadow: 2px 0px 6px rgba(0, 0, 0, 0.6); */
     /* 弹性布局 */
     display: flex;
     /* 内容水平居中显示 */
@@ -133,7 +131,7 @@ input {
     /* 将输入框背景改为透明 */
     background-color: transparent;
     width: 70%;
-    color: #fff;
+    color: #333;
     border: 1.5px solid #D9D9D9;
     /* height: 32px; */
     margin: 12px;
@@ -151,12 +149,6 @@ input::placeholder {
     padding-left: 10px;
 }
 
-/* 当输入框被选中时 */
-input:focus {
-    /* color: rgb(222, 142, 165);
-    outline: none;
-    border-bottom: 2.5px solid rgba(222, 142, 165, 0.662); */
-}
 
 /* 当选中该输入框时 里面的文字消失 */
 input:focus::placeholder {
@@ -175,7 +167,6 @@ input:focus::placeholder {
     /* 不要边框 */
     border: none;
     border-radius: 6px;
-    /* box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1); */
     /* 当鼠标悬浮在按钮上时 变为指针手势 */
     cursor: pointer;
 }

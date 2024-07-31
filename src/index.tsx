@@ -1,5 +1,4 @@
 import { createRoot } from "react-dom/client"
-import React from "react"
 import { Provider } from "react-redux"
 import { BrowserRouter } from "react-router-dom"
 import { ConfigProvider, Empty } from "antd"

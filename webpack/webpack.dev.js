@@ -25,6 +25,12 @@ module.exports = merge(baseConfig, {
     devMiddleware: {
       stats: 'errors-only', // 仅在发生错误时输出统计信息
     },
+    proxy: {  // 重写的方式，把请求代理到express服务器上
+      '/api': {
+        target: 'http://39.107.249.219:8888/',
+        pathRewrite: { '/api': '' } // 把/api 替换为空
+      }
+    }
   },
   plugins: [
     new ReactRefreshWebpackPlugin(), // 添加热更新插件
