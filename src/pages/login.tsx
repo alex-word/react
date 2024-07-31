@@ -52,7 +52,7 @@ const Login = () => {
           <h2>欢迎来到<span>前端星球</span></h2>
           <p>提升你的<span>设计·编程</span>能力</p>
           <img src={registerImg} alt="登录" />
-          <p>没有账号？</p>
+          <p style={{ fontWeight: 'normal', fontSize: 14 }}>没有账号？</p>
           <button id="register" ref={register} onClick={() => handleClick('register')}>去注册</button>
         </div>
       </div>
@@ -65,18 +65,18 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   background: url(${Banner}) no-repeat ;
-  background-color: #fff;
   background-size: 100% 100%;
+  opacity: 0.9;
   .container{
     width: 620px;
     height: 400px;
     border-radius: 10px;
     /* 阴影 */
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1); */
     /* 相对定位 */
     position: relative;
     z-index: 2;
-    background-color: #fff;
+    background-color:#e9f6ff;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -87,12 +87,13 @@ const Container = styled.div`
     /* 上面突出来一小节 */
     top: -12px;
     left: 10px;
-    background-color: rgb(255, 205, 219);
+    /* background-color: rgb(255, 205, 219); */
+    background-color: #fff;
     width: 300px;
     height: 424px;
     z-index: 2;
     border-radius: 10px;
-    box-shadow: 2px 0px 6px rgba(0, 0, 0, 0.6);
+    /* box-shadow: 2px 0px 6px rgba(0, 0, 0, 0.6); */
     /* 弹性布局 */
     display: flex;
     /* 内容水平居中显示 */
@@ -116,7 +117,7 @@ h1 {
     margin-bottom: 25px;
     /* 转换为大写 */
     text-transform: uppercase;
-    color: #fff;
+    color: #435ee8;
     /* 设置字间距 */
     letter-spacing: 3px;
 }
@@ -126,8 +127,7 @@ input {
     background-color: transparent;
     width: 70%;
     color: #fff;
-    border: none;
-    border-bottom: 1.5px solid #fff;
+    border: 1.5px solid #D9D9D9;
     /* height: 32px; */
     margin: 10px;
     border-radius: 6px;
@@ -140,15 +140,15 @@ input {
 }
 /* 将输入框中的占位字改为白色 */
 input::placeholder {
-    color: #fff;
+    color: #999;
+    padding-left: 10px;
 }
 
 /* 当输入框被选中时 */
 input:focus {
-    color: rgb(222, 142, 165);
-    /* 不要默认的选中框 */
+    /* color: rgb(222, 142, 165);
     outline: none;
-    border-bottom: 2.5px solid rgba(222, 142, 165, 0.662);
+    border-bottom: 2.5px solid rgba(222, 142, 165, 0.662); */
 }
 
 /* 当选中该输入框时 里面的文字消失 */
@@ -159,23 +159,23 @@ input:focus::placeholder {
 /* 渲染注册/登录按钮 */
 .form-box button {
     margin-top: 20px;
-    width: 70%;
+    width: 220px;
     height: 40px;
-    background: #f6f6f6;
+    background: #435ee8;
     font-size: 15px;
     font-weight: 700;
-    color: rgb(222, 142, 165);
+    color: #fff;
     /* 不要边框 */
     border: none;
-    border-radius: 8px;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    /* box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1); */
     /* 当鼠标悬浮在按钮上时 变为指针手势 */
     cursor: pointer;
 }
 
 /* 鼠标悬浮在按钮上时 背景&字体颜色改变 并且有0.5秒的过渡 */
 .form-box button:hover {
-    background: rgb(222, 114, 145);
+    background: #435fe8ce;
     color: #f3f3f3;
     transition: 0.5s ease;
 }
@@ -205,19 +205,19 @@ input:focus::placeholder {
 }
 
 .con-box h2 {
-    color: rgb(154, 154, 154);
+    color: #000;
     letter-spacing: 3px;
     text-align: center;
 }
 
 .con-box h2 span {
-    color: rgba(232, 134, 162, 0.87);
+    color: #435ee8;
     letter-spacing: 3px;
     text-align: center;
 }
 
 .con-box p {
-    color: rgb(154, 154, 154);
+    color: #666;
     letter-spacing: 1px;
     text-align: center;
     font-weight: 500;
@@ -237,24 +237,23 @@ input:focus::placeholder {
 }
 
 .con-box button {
-    margin-top: 12px;
-    background-color: #fff;
-    margin-top: 20px;
-    width: 30%;
-    height: 30px;
-    background: #f6f6f6;
-    font-size: 13px;
-    font-weight: 600;
-    color: rgb(222, 142, 165);
+  margin-top: 10px;
+    width: 220px;
+    height: 40px;
+    background: #435ee8;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    /* 不要边框 */
     border: none;
-    outline: none;
-    border-radius: 8px;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    /* box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1); */
+    /* 当鼠标悬浮在按钮上时 变为指针手势 */
     cursor: pointer;
 }
 
 .con-box button:hover {
-    background: rgba(222, 114, 145, 0.687);
+  background: #435fe8ce;
     color: #f3f3f3;
     transition: 0.5s ease;
 }
