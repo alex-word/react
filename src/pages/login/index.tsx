@@ -3,7 +3,8 @@ import Banner from "@/assets/images/banner.jpg"
 import loginImg from "@/assets/images/login.jpg"
 import registerImg from "@/assets/images/register.jpg"
 import { useEffect, useRef, useState } from "react";
-import { getPortList, postLogin } from "@/api/user";
+import { getPortList, postLogin, postRegister } from "@/api/user";
+import { message } from "antd";
 const Login = () => {
   let login = useRef(null)
   // 绑定事件
@@ -25,16 +26,27 @@ const Login = () => {
     }
   }
   const handleLogin = () => {
+    setLoading(true)
     postLogin(formParams.current).then(res => {
-      console.log(res);
-    })
+      message.success('登录成功')
+    }).catch(err => {
+      console.log(err)
+    }).finally(() => { setLoading(false) })
+  }
+  const handleRegister = () => {
+    setLoading(true)
+    postRegister(formParams.current).then(res => {
+      message.success('注册成功')
+    }).catch(err => {
+      console.log(err)
+    }).finally(() => { setLoading(false) })
   }
   useEffect(() => {
     setLoading(true)
     getPortList().catch((err) => {
-  console.log(err)
-     }
-  ).finally(() => { setLoading(false) })
+      console.log(err)
+    }
+    ).finally(() => { setLoading(false) })
   }, [])
   return (
     <Container>
@@ -46,7 +58,7 @@ const Login = () => {
             <input type="email" name="邮箱" placeholder="邮箱" />
             <input type="password" name="密码" placeholder="密码" />
             <input type="password" name="确认密码" placeholder="确认密码" />
-            <button>注 册</button>
+            <button onClick={handleRegister} disabled={loading}>注 册</button>
           </div>
           <div className="login-box" ref={loginBox}>
             <h1>login</h1>
@@ -62,7 +74,7 @@ const Login = () => {
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 0 }}>
             <div>已有账号</div>
             <span className="link" onClick={() => handleClick('login')}>
-            去登录</span>
+              去登录</span>
           </div>
         </div>
         <div className="con-box right">
