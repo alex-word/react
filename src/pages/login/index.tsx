@@ -59,8 +59,11 @@ const Login = () => {
           <h2>欢迎来到<span>前端星球</span></h2>
           <p>快来开启你的<span>设计</span>旅程吧</p>
           <img src={loginImg} alt="登录" />
-          <p>已有账号</p>
-          <button id="login" ref={login} onClick={() => handleClick('login')}>去登录</button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 0 }}>
+            <div>已有账号</div>
+            <span className="link" onClick={() => handleClick('login')}>
+            去登录</span>
+          </div>
         </div>
         <div className="con-box right">
           <h2>欢迎来到<span>前端星球</span></h2>
@@ -68,10 +71,8 @@ const Login = () => {
           <img src={registerImg} alt="登录" />
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 0 }}>
             <div>没有账号？</div>
-            {/* <button id="register" ref={register} onClick={() => handleClick('register')}>  */}
-            <span style={{ color: '#435ee8' }} onClick={() => handleClick('register')}>
+            <span className="link" onClick={() => handleClick('register')}>
               去注册</span>
-            {/* </button> */}
           </div>
         </div>
       </div>
@@ -138,6 +139,10 @@ h1 {
 .register-box h1{
   margin-bottom: 20px;
 }
+.link{
+  color: #435ee8;
+  cursor: pointer;
+}
 input {
     /* 将输入框背景改为透明 */
     background-color: transparent;
@@ -149,7 +154,7 @@ input {
     border-radius: 6px;
     padding: 10px 4px;
     font-size: 14px;
-
+    padding-left: 10px;
 }
 .hidden{
   display: none;
@@ -157,7 +162,6 @@ input {
 /* 将输入框中的占位字改为白色 */
 input::placeholder {
     color: #999;
-    padding-left: 10px;
 }
 
 
