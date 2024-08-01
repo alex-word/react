@@ -3,7 +3,7 @@ import Banner from "@/assets/images/banner.jpg"
 import loginImg from "@/assets/images/login.jpg"
 import registerImg from "@/assets/images/register.jpg"
 import { useEffect, useRef, useState } from "react";
-import { getPortList, postLogin, postRegister } from "@/api/user";
+import { getPortList, postLogin, postRegister } from "@/api/modules/user";
 import { message } from "antd";
 import { handleRequest } from "@/utils/handle-request";
 const Login = () => {
