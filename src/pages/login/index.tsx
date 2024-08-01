@@ -12,6 +12,7 @@ const Login = () => {
   let registerBox = useRef<any>(null)
   let loginBox = useRef<any>(null)
   let formParams = useRef({ username: '', password: '' })
+  let formRegister = useRef({ username: '', password: '' })
   const [loading, setLoading] = useState(false)
 
   const handleClick = (type: 'login' | 'register') => {
@@ -54,9 +55,9 @@ const Login = () => {
         <div className="form-box" ref={formBox}>
           <div className="register-box hidden" ref={registerBox}>
             <h1>register</h1>
-            <input type="text" name="用户名" placeholder="用户名" />
+            <input type="text" name="用户名" placeholder="用户名" onChange={e=>formRegister.current.username=e.target.value} />
             <input type="email" name="邮箱" placeholder="邮箱" />
-            <input type="password" name="密码" placeholder="密码" />
+            <input type="password" name="密码" placeholder="密码"  onChange={e=>formRegister.current.password=e.target.value} />
             <input type="password" name="确认密码" placeholder="确认密码" />
             <button onClick={handleRegister} disabled={loading}>注 册</button>
           </div>
