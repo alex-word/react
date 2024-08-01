@@ -5,27 +5,17 @@ import registerImg from "@/assets/images/register.jpg"
 import { useEffect, useRef, useState } from "react";
 import { getPortList, postLogin, postRegister } from "@/api/user";
 import { message } from "antd";
+import { handleRequest } from "@/utils/handle-request";
 const Login = () => {
-  let login = useRef(null)
   // 绑定事件
   let formBox = useRef<any>(null)
   let registerBox = useRef<any>(null)
   let loginBox = useRef<any>(null)
   let formParams = useRef({ username: '', password: '' })
-  let formRegister = useRef({ username: '', password: '' })
+  let formRegister = useRef({ username: '', password: '', email: '', check_password: '' })
   const [loading, setLoading] = useState(false)
+  const [type, setType] = useState<'login' | 'register'>('login')
 
-  const handleClick = (type: 'login' | 'register') => {
-    // 表格盒子向右平移
-    formBox.current.style.transform = type === 'login' ? 'translateX(0)' : 'translateX(100%)';
-    if (type === 'register') {
-      loginBox.current.classList.add('hidden');
-      registerBox.current.classList.remove('hidden');
-    } else {
-      registerBox.current.classList.add('hidden');
-      loginBox.current.classList.remove('hidden');
-    }
-  }
   const handleLogin = () => {
     setLoading(true)
     postLogin(formParams.current).then(res => {
@@ -38,30 +28,36 @@ const Login = () => {
     setLoading(true)
     postRegister(formRegister.current).then(res => {
       message.success('注册成功')
+      setType('login')
     }).catch(err => {
-      message.error('注册失败')
-    }).finally(() => { setLoading(false) })
+      message.error(err.message)
+    }).finally(() => {
+      setLoading(false)
+    })
   }
   useEffect(() => {
     setLoading(true)
-    getPortList().catch((err) => {
-      message.error('获取失败')
-    }
-    ).finally(() => { setLoading(false) })
+    handleRequest(getPortList, setLoading).then((res) => {
+      console.log(res);
+    })
+    // getPortList().catch((err) => {
+    //   message.error('获取失败')
+    // }
+    // ).finally(() => { setLoading(false) })
   }, [])
   return (
     <Container>
       <div className="container">
-        <div className="form-box" ref={formBox}>
-          <div className="register-box hidden" ref={registerBox}>
+        <div className="form-box" style={{ transform: type === 'login' ? 'translateX(0)' : 'translateX(100%)' }}>
+          <div className={`register-box ${type === 'login' ? ' hidden' : ''}`} ref={registerBox}>
             <h1>register</h1>
-            <input type="text" name="用户名" placeholder="用户名" onChange={e=>formRegister.current.username=e.target.value} />
-            <input type="email" name="邮箱" placeholder="邮箱" />
-            <input type="password" name="密码" placeholder="密码"  onChange={e=>formRegister.current.password=e.target.value} />
-            <input type="password" name="确认密码" placeholder="确认密码" />
+            <input type="text" name="用户名" placeholder="用户名" onChange={e => formRegister.current.username = e.target.value} />
+            <input type="email" name="邮箱" placeholder="邮箱" onChange={e => formRegister.current.email = e.target.value} />
+            <input type="password" name="密码" placeholder="密码" onChange={e => formRegister.current.password = e.target.value} />
+            <input type="password" name="确认密码" placeholder="确认密码" onChange={e => formRegister.current.check_password = e.target.value} />
             <button onClick={handleRegister} disabled={loading}>注 册</button>
           </div>
-          <div className="login-box" ref={loginBox}>
+          <div className={`register-box ${type === 'login' ? '' : ' hidden'}`} ref={loginBox}>
             <h1>login</h1>
             <input type="text" name="用户名" placeholder="用户名" onChange={(e) => formParams.current.username = e.target.value} />
             <input type="password" name="密码" placeholder="密码" onChange={(e) => formParams.current.password = e.target.value} />
@@ -74,7 +70,7 @@ const Login = () => {
           <img src={loginImg} alt="登录" />
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 0 }}>
             <div>已有账号</div>
-            <span className="link" onClick={() => handleClick('login')}>
+            <span className="link" onClick={() => setType('login')}>
               去登录</span>
           </div>
         </div>
@@ -84,7 +80,7 @@ const Login = () => {
           <img src={registerImg} alt="登录" />
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 0 }}>
             <div>没有账号？</div>
-            <span className="link" onClick={() => handleClick('register')}>
+            <span className="link" onClick={() => setType('register')}>
               去注册</span>
           </div>
         </div>
