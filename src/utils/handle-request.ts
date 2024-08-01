@@ -1,12 +1,8 @@
-import { ResultData } from "@/api/interface";
+import { CommonResult} from "@/api/interface";
 import { message } from "antd";
-import { AxiosResponse } from "axios";
-
-const handleRequest = (callback: (data?: any) => Promise<AxiosResponse<any, any>> | Promise<ResultData<unknown>>, loading?: React.Dispatch<React.SetStateAction<boolean>>, ...args: any) => {
-    console.log(args);
-
+const handleRequest =<T> (fn, loading ?: React.Dispatch<React.SetStateAction<boolean>>, ...args: any): Promise<CommonResult<T>> => {
     if (loading) loading(true)
-    return callback(...args)
+    return fn(...args)
         .then((res) => {
             return res
         })

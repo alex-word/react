@@ -8,3 +8,9 @@ export interface Result {
 export interface ResultData<T = any> extends Result {
   data: T;
 }
+
+export interface CommonResult<T> {
+  code: number
+  message?: string
+  data: T
+}

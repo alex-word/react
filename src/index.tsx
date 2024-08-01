@@ -12,9 +12,9 @@ const root = document.getElementById("root")
 if (root) {
   createRoot(root).render(
     <Provider store={store}>
-      <ConfigProvider locale={zhCN}>
+      <ConfigProvider locale={zhCN} theme={{ token: { colorPrimary: "#435ee8", colorTextBase: '#333', colorTextSecondary: '#666' } }}>
         <BrowserRouter>
-            <App />
+          <App />
         </BrowserRouter>
       </ConfigProvider>
     </Provider>

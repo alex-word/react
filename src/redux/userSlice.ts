@@ -16,12 +16,16 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     addToken: (store, action: PayloadAction<string>) => {
+      console.log(action.payload);
+      
+      localStorage.setItem('token', action.payload)
       return {
         ...store,
         token: action.payload,
       }
     },
     removeToken: (store) => {
+      localStorage.removeItem('token')
       return {
         ...store,
         token: null,

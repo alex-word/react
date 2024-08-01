@@ -3,6 +3,7 @@ import { useRoutes, RouteObject, useNavigate, Navigate } from "react-router-dom"
 import { Spin } from "antd";
 
 import RouteTable, { SyncRoute } from "./setting";
+import { useUserSelector } from "@/redux/userSlice";
 
 //懒加载处理
 const syncRouter = (routes: Array<SyncRoute>): RouteObject[] => {
@@ -15,6 +16,7 @@ const syncRouter = (routes: Array<SyncRoute>): RouteObject[] => {
             children: route.children && syncRouter(route.children),
             element: (
                 route.redirect ? <Navigate to={route.redirect} /> :
+                    route.component &&
                     <Suspense
                         fallback={
                             <div className="h-full w-full flex justify-center items-center">
@@ -35,16 +37,22 @@ const syncRouter = (routes: Array<SyncRoute>): RouteObject[] => {
 };
 //路由拦截
 const RequireAuth = (props: { route: SyncRoute; children: any }) => {
+    const { token } = useUserSelector()
     if (props?.route?.meta?.title) {
         document.title = props.route.meta.title;
     }
     const navigate = useNavigate();
-
-    if (props?.route?.meta?.auth && !localStorage.getItem('token')) {
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            // 看是否登录
+            navigate('/login');
+        }
+    }, [token])
+    if (props?.route?.meta?.auth) {
         // 看是否登录
         useEffect(() => {
             navigate('/404');
-        })
+        }, [])
     }
 
 

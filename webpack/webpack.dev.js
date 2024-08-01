@@ -27,7 +27,8 @@ module.exports = merge(baseConfig, {
     },
     proxy: {  // 重写的方式，把请求代理到express服务器上
       '/api': {
-        target: 'http://39.107.249.219:8888',
+        // target: 'http://39.107.249.219:8888',
+        target: 'http://localhost:8888',
         pathRewrite: { '/api': '' } // 把/api 替换为空
       }
     }

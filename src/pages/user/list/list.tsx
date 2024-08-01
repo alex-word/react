@@ -1,4 +1,6 @@
+import { getPortList, UserInfo } from "@/api/modules/user";
 import { ContainerPage } from "@/components/container-page"
+import { handleRequest } from "@/utils/handle-request";
 import { GetProp, Table, TableProps } from "antd"
 import { useEffect, useState } from "react";
 
@@ -6,56 +8,44 @@ export const List = () => {
     type ColumnsType<T> = TableProps<T>['columns'];
     type TablePaginationConfig = Exclude<GetProp<TableProps, 'pagination'>, boolean>;
 
-    interface DataType {
-        name: {
-            first: string;
-            last: string;
-        };
-        gender: string;
-        email: string;
-        login: {
-            uuid: string;
-        };
-    }
 
-    const columns: ColumnsType<DataType> = [
+    const columns: ColumnsType<UserInfo> = [
         {
-            title: 'Name',
-            dataIndex: 'name',
+            title: '名称',
+            dataIndex: 'user',
             width: '20%',
         },
         {
-            title: 'Gender',
-            dataIndex: 'gender',
-            width: '20%',
-        },
-        {
-            title: 'Email',
+            title: '邮箱',
             dataIndex: 'email',
+            width: '20%',
+        },
+        {
+            title: '创建时间',
+            dataIndex: 'created_at',
         },
     ];
 
 
-    const [data, setData] = useState<DataType[]>();
+    const [data, setData] = useState<UserInfo[]>();
     const [loading, setLoading] = useState(false);
     const [pagination, setPagination] = useState<TablePaginationConfig>({
         current: 1,
         pageSize: 10,
     });
-    const fetchData = () => {
-        // setLoading(true);
 
-    };
     useEffect(() => {
-        fetchData();
+        getPortList().then((res) => {
+            setData(res.data.data )
+        }).catch((err) => {
+            console.log(err)
+        })
     }, [
         pagination?.current,
-        pagination?.pageSize,
-    ]);
-
+        pagination?.pageSize,])
     return <Table
         columns={columns}
-        rowKey={(record) => record.login.uuid}
+        rowKey={'id'}
         dataSource={data}
         pagination={pagination}
         loading={loading}
