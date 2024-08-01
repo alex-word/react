@@ -30,7 +30,7 @@ const Login = () => {
     postLogin(formParams.current).then(res => {
       message.success('登录成功')
     }).catch(err => {
-      console.log(err)
+      message.error(err.message)
     }).finally(() => { setLoading(false) })
   }
   const handleRegister = () => {
@@ -38,13 +38,13 @@ const Login = () => {
     postRegister(formParams.current).then(res => {
       message.success('注册成功')
     }).catch(err => {
-      console.log(err)
+      message.error('注册失败')
     }).finally(() => { setLoading(false) })
   }
   useEffect(() => {
     setLoading(true)
     getPortList().catch((err) => {
-      console.log(err)
+      message.error('获取失败')
     }
     ).finally(() => { setLoading(false) })
   }, [])
