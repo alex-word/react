@@ -37,13 +37,17 @@ const RouteTable: Array<SyncRoute> = [
     component: lazy(() => import("@/pages/login")),
     meta: {
       title: "登录",
-      auth: true,
+      auth: false,
     },
   },
   {
     path: "/404",//404页面
     component: lazy(() => import("@/pages/notFound")),
   },
+  {
+    path: "*",
+    component: lazy(() => import("@/pages/login")),
+  }
 ];
 
 export default RouteTable;
