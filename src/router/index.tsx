@@ -1,5 +1,5 @@
 import { Suspense, useEffect } from "react";
-import { useRoutes, RouteObject, useNavigate } from "react-router-dom";
+import { useRoutes, RouteObject, useNavigate, Navigate } from "react-router-dom";
 import { Spin } from "antd";
 
 import RouteTable, { SyncRoute } from "./setting";
@@ -13,17 +13,19 @@ const syncRouter = (routes: Array<SyncRoute>): RouteObject[] => {
         transformedRoutes.push({
             path: route.path,
             children: route.children && syncRouter(route.children),
-            element: (<Suspense
-                fallback={
-                    <div className="h-full flex justify-center items-center">
-                        <Spin tip="Loading" size="large" />
-                    </div>
-                }
-            >
-                <RequireAuth route={route}>
-                    <route.component />
-                </RequireAuth>
-            </Suspense>),
+            element: (
+                route.redirect ? <Navigate to={route.redirect} /> :
+                    <Suspense
+                        fallback={
+                            <div className="h-full w-full flex justify-center items-center">
+                                <Spin tip="Loading" size="large" />
+                            </div>
+                        }
+                    >
+                        <RequireAuth route={route}>
+                            <route.component />
+                        </RequireAuth>
+                    </Suspense>),
             // 这里可以添加其他必要的属性
         });
     }
@@ -36,14 +38,16 @@ const RequireAuth = (props: { route: SyncRoute; children: any }) => {
     if (props?.route?.meta?.title) {
         document.title = props.route.meta.title;
     }
+    const navigate = useNavigate();
 
     if (props?.route?.meta?.auth && !localStorage.getItem('token')) {
         // 看是否登录
-        const navigate = useNavigate();
         useEffect(() => {
             navigate('/404');
         })
     }
+
+
     return props.children;
 };
 

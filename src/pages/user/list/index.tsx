@@ -1,5 +1,5 @@
 import { ContainerPage } from "@/components/container-page"
-import { List } from "antd"
+import { List } from "./list"
 
 const UserList = () => {
     return (

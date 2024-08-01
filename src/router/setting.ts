@@ -4,6 +4,7 @@ export interface SyncRoute {
   path: string;
   component: React.LazyExoticComponent<any>;
   children?: Array<SyncRoute>;
+  redirect?: string;
   meta?: {
     title?: string;
     auth?: boolean;
@@ -16,7 +17,7 @@ const RouteTable: Array<SyncRoute> = [
     component: lazy(() => import("@/pages/user/list")),
     meta: {
       title: "用户列表",
-      auth: true,
+      auth: false,
     },
     // children: [//二级路由
     //   {
@@ -46,6 +47,7 @@ const RouteTable: Array<SyncRoute> = [
   },
   {
     path: "*",
+    redirect: '/login',
     component: lazy(() => import("@/pages/login")),
   }
 ];
