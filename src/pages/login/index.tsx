@@ -36,7 +36,7 @@ const Login = () => {
   }
   const handleRegister = () => {
     setLoading(true)
-    postRegister(formParams.current).then(res => {
+    postRegister(formRegister.current).then(res => {
       message.success('注册成功')
     }).catch(err => {
       message.error('注册失败')
