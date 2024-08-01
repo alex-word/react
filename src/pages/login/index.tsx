@@ -164,7 +164,9 @@ input::placeholder {
     color: #999;
 }
 
-
+input:focus{
+  border-color: #435ee8;
+}
 /* 当选中该输入框时 里面的文字消失 */
 input:focus::placeholder {
     opacity: 0;
