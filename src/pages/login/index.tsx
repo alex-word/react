@@ -37,8 +37,10 @@ const Login = () => {
   }
   useEffect(() => {
     setLoading(true)
-    handleRequest(getPortList, setLoading).then((res) => {
+    handleRequest(postLogin, setLoading).then((res) => {
       console.log(res);
+    }).catch((err) => {
+      console.log(err)
     })
     // getPortList().catch((err) => {
     //   message.error('获取失败')
