@@ -1,7 +1,8 @@
+import { ResultData } from "@/api/interface";
 import { message } from "antd";
 import { AxiosResponse } from "axios";
 
-const handleRequest = (callback: (data?: any) => Promise<AxiosResponse<any, any>>, loading?: React.Dispatch<React.SetStateAction<boolean>>, ...args: any) => {
+const handleRequest = (callback: (data?: any) => Promise<AxiosResponse<any, any>> | Promise<ResultData<unknown>>, loading?: React.Dispatch<React.SetStateAction<boolean>>, ...args: any) => {
     console.log(args);
 
     if (loading) loading(true)
