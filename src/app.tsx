@@ -1,27 +1,12 @@
-import { useRoutes, Navigate } from "react-router-dom"
 import styled from "styled-components"
+import Routes from "./router/index";
 
 import "./app.less"
-import Login from "./pages/login"
 
 export const App = () => {
-  const routes = useRoutes([
-    {
-      path: "/*",
-      children: [
-        {
-          path: "login",
-          element: <Login />,
-          children: [],
-        },
-        {
-          path: "*",
-          element: <Login />,
-        },
-      ],
-    },
-  ])
-  return <AppContainer>{routes}</AppContainer>
+  return <AppContainer>
+    <Routes />
+  </AppContainer>
 }
 
 const AppContainer = styled.div`

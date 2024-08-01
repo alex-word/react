@@ -14,7 +14,7 @@ if (root) {
     <Provider store={store}>
       <ConfigProvider locale={zhCN}>
         <BrowserRouter>
-          <App />
+            <App />
         </BrowserRouter>
       </ConfigProvider>
     </Provider>

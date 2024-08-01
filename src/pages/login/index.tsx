@@ -6,11 +6,8 @@ import { useEffect, useRef, useState } from "react";
 import { getPortList, postLogin, postRegister } from "@/api/modules/user";
 import { message } from "antd";
 import { handleRequest } from "@/utils/handle-request";
+import { addToken } from "@/redux/userSlice";
 const Login = () => {
-  // 绑定事件
-  let formBox = useRef<any>(null)
-  let registerBox = useRef<any>(null)
-  let loginBox = useRef<any>(null)
   let formParams = useRef({ username: '', password: '' })
   let formRegister = useRef({ username: '', password: '', email: '', check_password: '' })
   const [loading, setLoading] = useState(false)
@@ -19,6 +16,7 @@ const Login = () => {
   const handleLogin = () => {
     setLoading(true)
     postLogin(formParams.current).then(res => {
+      addToken(res.data.token)
       message.success('登录成功')
     }).catch(err => {
       message.error(err.message)
@@ -39,26 +37,23 @@ const Login = () => {
     setLoading(true)
     handleRequest(getPortList, setLoading).then((res) => {
       console.log(res);
-    }).catch((err)=>{console.log(err)
+    }).catch((err) => {
+      console.log(err)
     })
-    // getPortList().catch((err) => {
-    //   message.error('获取失败')
-    // }
-    // ).finally(() => { setLoading(false) })
   }, [])
   return (
     <Container>
       <div className="container">
         <div className="form-box" style={{ transform: type === 'login' ? 'translateX(0)' : 'translateX(100%)' }}>
-          <div className={`register-box ${type === 'login' ? ' hidden' : ''}`} ref={registerBox}>
+          <div className={`register-box ${type === 'login' ? ' hidden' : ''}`} >
             <h1>register</h1>
-            <input type="text" name="用户名" placeholder="用户名" onChange={e => formRegister.current.username = e.target.value} />
+            <input type="text" name="用户名" placeholder="用户名" onChange={(e: { target: { value: any; }; }) => formRegister.current.username = e.target.value} />
             <input type="email" name="邮箱" placeholder="邮箱" onChange={e => formRegister.current.email = e.target.value} />
             <input type="password" name="密码" placeholder="密码" onChange={e => formRegister.current.password = e.target.value} />
             <input type="password" name="确认密码" placeholder="确认密码" onChange={e => formRegister.current.check_password = e.target.value} />
             <button onClick={handleRegister} disabled={loading}>注 册</button>
           </div>
-          <div className={`register-box ${type === 'login' ? '' : ' hidden'}`} ref={loginBox}>
+          <div className={`register-box ${type === 'login' ? '' : ' hidden'}`} >
             <h1>login</h1>
             <input type="text" name="用户名" placeholder="用户名" onChange={(e) => formParams.current.username = e.target.value} />
             <input type="password" name="密码" placeholder="密码" onChange={(e) => formParams.current.password = e.target.value} />
