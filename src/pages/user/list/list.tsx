@@ -12,17 +12,24 @@ export const List = () => {
     const columns: ColumnsType<UserInfo> = [
         {
             title: '名称',
-            dataIndex: 'user',
+            dataIndex: 'name',
             width: '20%',
         },
         {
             title: '邮箱',
             dataIndex: 'email',
             width: '20%',
+            render(value, record, index) {
+                return <div>{value || '-'}</div>;
+            },
         },
         {
             title: '创建时间',
             dataIndex: 'created_at',
+        },
+        {
+            title: '更新时间',
+            dataIndex: 'updated_at',
         },
     ];
 
@@ -36,7 +43,7 @@ export const List = () => {
 
     useEffect(() => {
         getPortList().then((res) => {
-            setData(res.data.data )
+            setData(res.data.data)
         }).catch((err) => {
             console.log(err)
         })

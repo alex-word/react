@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { Breadcrumb, Button, Layout, LayoutProps, theme } from "antd";
+import { Breadcrumb, Button, Layout } from "antd";
 import { Navigation } from "./navigation";
-import { Outlet } from "react-router-dom";
-import logo from "@/assets/images/login.jpg";
-
+import { Outlet, useLocation } from "react-router-dom";
+import { BreadcrumbConfig } from "./breadcrumb-config";
 const { Sider } = Layout;
 const LayoutPage = () => {
     const [collapsed, setCollapsed] = useState(true);
-
+    const { pathname } = useLocation()
+    const Crumbs = useMemo(() => {
+        return BreadcrumbConfig.filter((item) => item.verifyPath.test(pathname))[0]
+    }, [pathname])
     return (
         <Layout style={{ height: '100%' }}>
             <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -27,11 +29,13 @@ const LayoutPage = () => {
                 />
             </Sider>
             <Layout>
-                <Breadcrumb style={{ padding: '8px 16px 0',background:'#f5f5f5' }}>
-                    <Breadcrumb.Item>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item>List</Breadcrumb.Item>
-                    <Breadcrumb.Item>App</Breadcrumb.Item>
-                </Breadcrumb>
+                {!Crumbs.notVisible &&
+                    <Breadcrumb style={{ padding: '8px 16px 0', background: '#f5f5f5' }}>
+                        {Crumbs.crumbs?.map(item =>
+                            <Breadcrumb.Item key={item}>{item}</Breadcrumb.Item>
+                        )}
+                    </Breadcrumb>
+                }
                 <Outlet />
             </Layout>
         </Layout>

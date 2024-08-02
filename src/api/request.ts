@@ -59,7 +59,7 @@ const get = function (url, params?) {
   })
 } as Request
 
-const post = function (url, data?, config?) {
+const post = function<P, R> (url, data?:P, config?):Promise<R> {
   return request({
     url,
     data,

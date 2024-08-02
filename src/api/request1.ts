@@ -24,7 +24,7 @@ class RequestHttp {
         const tokens = localStorage.getItem('token')
         if (tokens) {
           config.headers = {
-            token:tokens,
+            token: tokens,
           }
         }
 
@@ -57,6 +57,17 @@ class RequestHttp {
       },
     )
   }
-
+  /**
+   * @description 常用请求方法封装
+   */
+  get<T>(url: string, params?: object, _object: AxiosRequestConfig = {}): Promise<ResultData<T>> {
+    return this.service.get(url, { params, ..._object });
+  }
+  post<T>(url: string, params?: object | string, _object: AxiosRequestConfig = {}): Promise<ResultData<T>> {
+    return this.service.post(url, params, _object);
+  }
+  put<T>(url: string, params?: object, _object: AxiosRequestConfig = {}): Promise<ResultData<T>> {
+    return this.service.put(url, params, _object);
+  }
 }
 export default new RequestHttp(config);

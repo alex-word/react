@@ -2,15 +2,15 @@ import { CommonResult } from "../interface"
 import { get, post } from "../request"
 export interface UserInfo {
     username: string,
-    email?: string,
+    email: string,
     password: string
 }
-export const getPortList = (): Promise<CommonResult<{data: UserInfo[]}>> => {
+export const getPortList = (): Promise<CommonResult<{ data: UserInfo[] }>> => {
     return get(`/user-list`)
 }
-export const postLogin = (data: UserInfo) => {
-    return post<UserInfo, CommonResult<{token:string}>>(`/login`, data,)
+export const postLogin = (data: Omit<UserInfo, 'email'>): Promise<CommonResult<{ token: string }>> => {
+    return post(`/login`, data)
 }
-export const postRegister = (data) => {
+export const postRegister = (data: UserInfo) => {
     return post(`/register`, data)
 }
