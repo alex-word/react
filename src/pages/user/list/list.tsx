@@ -1,4 +1,5 @@
 import { getPortList, UserInfo } from "@/api/modules/user";
+import { put } from "@/api/request";
 import { ContainerPage } from "@/components/container-page"
 import { handleRequest } from "@/utils/handle-request";
 import { GetProp, Table, TableProps } from "antd"
@@ -47,9 +48,8 @@ export const List = () => {
         }).catch((err) => {
             console.log(err)
         })
-    }, [
-        pagination?.current,
-        pagination?.pageSize,])
+        // put('/pwd', { oldPassword: '123456',newPassword: '123456' }).catch(()=>{})
+    }, [pagination?.current, pagination?.pageSize,])
     return <Table
         columns={columns}
         rowKey={'id'}
