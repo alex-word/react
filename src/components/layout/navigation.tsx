@@ -11,7 +11,7 @@ export const Navigation = () => {
     return <Menu
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={['list']}
+        defaultSelectedKeys={['/list']}
         onClick={(e: { key: string }) => {
             navigate(e.key)
         }}

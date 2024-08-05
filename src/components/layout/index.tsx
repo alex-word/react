@@ -29,9 +29,9 @@ const LayoutPage = () => {
                 />
             </Sider>
             <Layout>
-                {!Crumbs.notVisible &&
+                {!Crumbs?.notVisible &&
                     <Breadcrumb style={{ padding: '8px 16px 0', background: '#f5f5f5' }}>
-                        {Crumbs.crumbs?.map(item =>
+                        {Crumbs?.crumbs?.map(item =>
                             <Breadcrumb.Item key={item}>{item}</Breadcrumb.Item>
                         )}
                     </Breadcrumb>
