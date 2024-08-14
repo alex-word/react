@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useMemoizedFn } from '.';
+import { useMemoizedFn } from '..';
 
 /**
  * 使用 Map 的自定义 Hook

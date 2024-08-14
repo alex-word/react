@@ -1,6 +1,6 @@
 import { useMemo, useRef } from 'react';
-import { isFunction } from '../utils';
-import isDev from '@/utils/is-dev';
+import { isFunction } from '../../utils';
+import isDev from '@/utils/isDev';
 
 type noop = (this: any, ...args: any[]) => any;
 
