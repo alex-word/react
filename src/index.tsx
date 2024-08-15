@@ -12,7 +12,7 @@ const root = document.getElementById("root")
 if (root) {
   createRoot(root).render(
     <Provider store={store}>
-      <ConfigProvider locale={zhCN} theme={{ token: { colorPrimary: "#435ee8", colorTextBase: '#333', colorTextSecondary: '#666' } }}>
+      <ConfigProvider locale={zhCN} theme={{ token: { colorPrimary: "#435ee8", colorTextBase: '#333', colorTextSecondary: '#666', controlHeight: 32 } }}>
         <BrowserRouter>
           <App />
         </BrowserRouter>

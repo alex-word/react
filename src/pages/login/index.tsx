@@ -58,7 +58,11 @@ const Login = () => {
             <div className={`register-box`} >
               <h1>login</h1>
               <input type="text" name="用户名" placeholder="用户名" onChange={(e) => formParams.current.username = e.target.value} />
-              <input type="password" name="密码" placeholder="密码" onChange={(e) => formParams.current.password = e.target.value} />
+              <input type="password" name="密码" placeholder="密码" onChange={(e) => formParams.current.password = e.target.value} onKeyUp={(e)=>{
+                if(e.keyCode === 13){
+                  handleLogin()
+                }
+              }}/>
               <button onClick={handleLogin} disabled={loading}>登 录</button>
             </div>}
         </div>
@@ -150,6 +154,14 @@ h1 {
   color: #435ee8;
   cursor: pointer;
 }
+/* .input{
+  width: 70%;
+  height: 40px;
+  border-width: 1.5px;
+}
+input {
+    border: 1.5px solid #D9D9D9;
+} */
 input {
     /* 将输入框背景改为透明 */
     background-color: transparent;
