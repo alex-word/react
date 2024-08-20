@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import store from '@/redux'
 import { removeToken } from '@/redux/userSlice'
+import { Message } from '@/components/message'
 const isProduction = process.env.NODE_ENV === 'production' ? true : false
 interface Request {
   <P, R>(url: string, data?: P, config?: AxiosRequestConfig): Promise<R>
@@ -38,6 +39,7 @@ request.interceptors.response.use(
     if (data.code !== 200) {
       switch (data.code) {
         case 401:
+          Message.error('登录已过期，请重新登录')
           store.dispatch(removeToken())
           break
       }

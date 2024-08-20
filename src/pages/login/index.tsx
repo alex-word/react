@@ -20,7 +20,7 @@ const Login = () => {
     postLogin(formParams.current).then(res => {
       dispatch(addToken(res.data.token))
       Message.success('登录成功')
-      navigate('/list')
+      navigate('/dashboard')
     }).catch(err => {
       Message.error(err.message)
     }).finally(() => { setLoading(false) })
