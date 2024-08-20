@@ -5,7 +5,7 @@ interface ContainerProps {
     children: React.ReactNode
     className?: string
 }
-export const ContainerPage: React.FC<ContainerProps> = (props) => {
+export const PageContainer: React.FC<ContainerProps> = (props) => {
     const { style, children, className } = props
     return (
         <Container style={style} className={className}>

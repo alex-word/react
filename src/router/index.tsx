@@ -12,7 +12,7 @@ const syncRouter = (routes: Array<SyncRoute>): RouteObject[] => {
     const navigate = useNavigate();
     useEffect(() => {
         if (pathname === '/' || !localStorage.getItem('token')) navigate('/login')
-        else if(localStorage.getItem('token')) navigate('/list')
+        else if (localStorage.getItem('token') && pathname === '/login') navigate('/list')
     }, [pathname])
     for (const route of routes as SyncRoute[]) {
         // 假设我们只是简单地将path属性映射到新的对象中

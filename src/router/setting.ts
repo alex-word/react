@@ -18,8 +18,16 @@ const RouteTable: Array<SyncRoute> = [
     children: [//二级路由
       {
         path: "*",//为空则默认显示该路由
-        component: lazy(() => import("@/components/layout")),
+        component: lazy(() => import("@/layout")),
         children: [
+          {
+            path: 'dashboard',
+            component: lazy(() => import("@/pages/dashboard/index")),
+            meta: {
+              title: "Dashboard",
+              auth: false
+            },
+          },
           {
             path: 'list',
             component: lazy(() => import("@/pages/user/list")),

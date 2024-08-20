@@ -14,10 +14,10 @@ const LayoutPage = () => {
     return (
         <Layout style={{ height: '100%' }}>
             <Sider trigger={null} collapsible collapsed={collapsed}>
-                <div style={{ borderRadius: 8, width: '100%', padding: '0 10px', border: '1px solid #ccc', margin: '10px 0 24px' }}>
-                    <img alt="logo" />
+                <div style={{ borderRadius: 8, width: 'calc(100% - 24px)', margin: '10px 12px 24px', overflow: 'hidden' }}>
+                    <img alt="logo" src={require("../assets/images/logo.png")} />
                 </div>
-                <Navigation />
+                <Navigation selectedKeys={pathname} />
                 <Button
                     type="text"
                     icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
