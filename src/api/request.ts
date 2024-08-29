@@ -49,7 +49,7 @@ request.interceptors.response.use(
   },
   function (error) {
     // 对响应错误做点什么
-    return Promise.reject({ msg: '目标网站不可达', code: 500 })
+    return Promise.reject({ msg: '网络不佳,请稍后重试', code: 500 })
   },
 )
 
