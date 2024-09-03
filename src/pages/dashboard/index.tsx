@@ -1,8 +1,16 @@
 import { PageContainer } from "@/components/container-page"
 import { Header } from "./header"
 import {ListModule} from "./listModule"
+import { useEffect } from "react"
+import { getHotSearch } from "@/api/modules/user"
 
 const Dashboard = () => {
+  useEffect(() => {
+    getHotSearch('baidu').then(res => {
+    }).catch(err => {
+
+    })
+  }, [])
   return <PageContainer>
     <Header />
     <ListModule listData={listData} />
