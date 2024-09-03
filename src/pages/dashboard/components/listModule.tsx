@@ -1,11 +1,10 @@
 import React from 'react';
 import { Card, CardProps } from 'antd';
 import styled from 'styled-components';
+import { SearchResult } from '@/api/modules/user';
 interface ItemsProps extends CardProps {
-  listData: {
-    titleName: string,
-    data: any
-  }
+  title: string,
+  listData: SearchResult[]
 }
 
 export const ListModule: React.FC<ItemsProps> = ({ title, listData, ...other }) => {
@@ -14,15 +13,20 @@ export const ListModule: React.FC<ItemsProps> = ({ title, listData, ...other }) 
       {title}
     </div>
     <div className='list-box'>
-      {listData.data.map((item: any) => <p key={item.key}>{item.title}</p>)}
+      {listData.map((item: any) => <p key={item.key}>{item.title}</p>)}
     </div>
   </HeaderCard>
 }
 const HeaderCard = styled(Card)`
   flex: 1;
+  height: 350px;
   .title{
       color: #666;
+      font-size: 16px;
+  }
+  .list-box{
+    margin-bottom: 8px;
+    overflow-y: auto;
   }
 `
 
-// export default ListModule;
