@@ -4,8 +4,9 @@ import { data } from "./config";
 
 export const Header = () => {
     return <div className="flex justify-center gap-16">
-        {data?.map((item, index) =>
+        
+        {/* {data?.map((item, index) =>
             <Items  {...item} />
-        )}
+        )} */}
     </div>
 }

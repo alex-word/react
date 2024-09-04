@@ -28,7 +28,7 @@ const LayoutPage = () => {
                     }}
                 />
             </Sider>
-            <Layout>
+            <Layout style={{overflowY:'auto'}}>
                 {!Crumbs?.notVisible &&
                     <Breadcrumb style={{ padding: '8px 16px 0', background: '#f5f5f5' }}>
                         {Crumbs?.crumbs?.map(item =>
