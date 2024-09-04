@@ -38,16 +38,6 @@ export const Navigation: React.FC<{ selectedKeys: string }> = React.memo(({ sele
                     },
                 ]
             },
-            {
-                key: '2',
-                icon: <VideoCameraOutlined />,
-                label: 'nav 2',
-            },
-            {
-                key: '3',
-                icon: <UploadOutlined />,
-                label: 'nav 3',
-            },
         ]}
     />
 }) 

@@ -18,17 +18,19 @@ const LayoutPage = () => {
                     <img alt="logo" src={require("../assets/images/logo.png")} />
                 </div>
                 <Navigation selectedKeys={pathname} />
-                <Button
-                    type="text"
-                    icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                    onClick={() => setCollapsed(!collapsed)}
-                    style={{
-                        fontSize: "16px",
-                        color: "#fff",
-                    }}
-                />
+                <div className="flex justify-center">
+                    <Button
+                        type="text"
+                        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                        onClick={() => setCollapsed(!collapsed)}
+                        style={{
+                            fontSize: "16px",
+                            color: "#fff",
+                        }}
+                    />
+                </div>
             </Sider>
-            <Layout style={{overflowY:'auto'}}>
+            <Layout style={{ overflowY: 'auto' }}>
                 {!Crumbs?.notVisible &&
                     <Breadcrumb style={{ padding: '8px 16px 0', background: '#f5f5f5' }}>
                         {Crumbs?.crumbs?.map(item =>
