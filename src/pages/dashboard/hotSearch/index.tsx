@@ -9,17 +9,24 @@ export const HotSearch = () => {
   const [data, setData] = useState<{ data: SearchResult[], title: string }[]>([])
   const getHotSearchList = async () => {
     try {
-      await getHotSearch('baidu').then((res: { data: SearchResult[] }) => {
-        setData(origin => ([...origin, { title: '百度', data: res.data }]))
-      })
-      await getHotSearch('weibo').then((res: { data: SearchResult[] }) => {
-        setData(origin => ([...origin, { title: '微博', data: res.data }]))
-      })
-      await getHotSearch('zhihu').then((res: { data: SearchResult[] }) => {
-        setData(origin => ([...origin, { title: '知乎', data: res.data }]))
-      })
+      const items = [
+        { search: 'weibo', title: '微博' },
+        { search: 'zhihu', title: '知乎' },
+        { search: 'tieba', title: '贴吧' },
+        { search: 'toutiao', title: '头条' },
+        { search: 'tengxun', title: '腾讯' },
+        { search: 'baidu', title: '百度' },
+        { search: 'douyin', title: '抖音' },
+        { search: 'bilibili', title: '哔哩哔哩' },
+      ]
+      for (const item of items) {
+        const res = await getHotSearch(item.search)
+        setData(origin => ([...origin, { title: item.title, data: res.data }]));
+      }
+
     } catch (error) {
       Message.error('获取失败')
+    } finally {
     }
   }
   useEffect(() => {

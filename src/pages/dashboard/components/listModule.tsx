@@ -12,18 +12,18 @@ interface ItemsProps extends CardProps {
 
 export const ListModule: React.FC<ItemsProps> = ({ title, listData, ...other }) => {
   return <HeaderCard bodyStyle={{ padding: 16, paddingRight: 0 }} title={<div>
-    <Icon type={'icon-' + HotSearchType[title] } style={{ marginRight: 8 }} />
+    <Icon type={'icon-' + HotSearchType[title]} style={{ marginRight: 8 }} />
     <span>{title}热搜</span>
   </div>} {...other}>
     <div className='list-box'>
       {listData.map((item, index) =>
         <div
-          key={item.hot_search_id}
+          key={item?.hot_search_id}
           className={`flex items-center cell-wrapper ${index < 3 ? 'top-ranking-' + (index + 1) : ''}`}
           onClick={() => { window.open(item.hot_search_href, "_blank", "noreferrer") }}>
           <span className='cell-order'>{index + 1}</span>
-          <span className='cell-title'>{item.hot_search_title}</span>
-          <span className='cell-heat'>{formatNumberZhCh(item.hot_metrics)}</span>
+          <span className='cell-title'>{item?.hot_search_title}</span>
+          <span className='cell-heat'>{formatNumberZhCh(item?.hot_metrics)}</span>
         </div>)}
     </div>
   </HeaderCard>
@@ -39,6 +39,7 @@ const HeaderCard = styled(Card)`
     .cell-wrapper{
       padding: 8px;
       border-bottom: 1px solid #e3e3e3;
+      gap: 8px;
     }
     .cell-order{
       width: 20px;
