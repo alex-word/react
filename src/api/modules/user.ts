@@ -25,3 +25,7 @@ export type SearchResult = {
 export const getHotSearch = (source: string): Promise<CommonResult<SearchResult[]>> => {
     return get(`/search/${source}`)
 }
+// 半成品
+// export const ticketBot = (): Promise<CommonResult<SearchResult[]>> => {
+//     return post(`/start-ticket-bot`)
+// }

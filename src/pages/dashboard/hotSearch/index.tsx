@@ -31,6 +31,7 @@ export const HotSearch = () => {
   };
   useEffect(() => {
     getHotSearchList();
+    // ticketBot().catch(()=>{})
   }, []);
   return (
     <Container>
