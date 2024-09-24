@@ -41,10 +41,13 @@ export const List = () => {
     });
 
     useEffect(() => {
-        getPortList().then((res) => {
+        setLoading(true)
+        getPortList({ page: pagination.current ?? 1, limit: pagination.pageSize ?? 10 }).then((res) => {
             setData(res.data.data)
         }).catch((err) => {
             console.log(err)
+        }).finally(() => {
+            setLoading(false)
         })
         // put('/pwd', { oldPassword: '123456',newPassword: '123456' }).catch(()=>{})
     }, [pagination?.current, pagination?.pageSize,])
@@ -52,7 +55,7 @@ export const List = () => {
         columns={columns}
         rowKey={'id'}
         dataSource={data}
-        pagination={pagination}
+        pagination={{ ...pagination, onChange: (page, pageSize) => { setPagination({ current: page, pageSize }) } }}
         loading={loading}
     />
 }

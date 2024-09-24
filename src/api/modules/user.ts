@@ -5,8 +5,8 @@ export interface UserInfo {
     email: string,
     password: string
 }
-export const getPortList = (): Promise<CommonResult<{ data: UserInfo[] }>> => {
-    return get(`/user-list`, { page: 1, limit: 10 })
+export const getPortList = (params: { page: number, limit: number }): Promise<CommonResult<{ data: UserInfo[] }>> => {
+    return get(`/user-list`, params)
 }
 export const postLogin = (data: Omit<UserInfo, 'email'>): Promise<CommonResult<{ token: string }>> => {
     return post(`/login`, data)

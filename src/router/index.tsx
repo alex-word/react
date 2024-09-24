@@ -49,16 +49,15 @@ const RequireAuth = (props: { route: SyncRoute; children: any }) => {
     const navigate = useNavigate();
     useEffect(() => {
         if (!localStorage.getItem('token')) {
-            // 看是否登录
+            // 检测是否登录
             navigate('/login');
         }
-    }, [token])
-    if (props?.route?.meta?.auth) {
-        // 看是否登录
-        useEffect(() => {
+        if (props?.route?.meta?.auth) {
+            // 看是否有权限
             navigate('/404');
-        }, [])
-    }
+        }
+    }, [token,props.route])
+
 
 
     return props.children;
