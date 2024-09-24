@@ -1,5 +1,6 @@
 #!/bin/bash
 set -u  # 开启未设置变量检测
+set -e  # 发生错误时停止运行
 
 max_attempts=3
 attempt=0  # 初始化尝试次数为0
