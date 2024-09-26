@@ -39,17 +39,6 @@ while [ $attempt -lt $max_attempts ]; do
             echo -e "$text_bg 🚀*******************代码提交完成。********************🚀 \033[0m"
             echo -e "$text_bg ********************************************************* \033[0m"
             exit 0
-        else
-            echo -e "$err_color 提交失败，请检查问题并重试。 \033[0m"
-            attempt=$((attempt + 1))
-            if [ $attempt -lt $max_attempts ]; then
-                echo "尝试次数：$attempt/$max_attempts"
-                # 退出内层循环，尝试新的提交
-                break
-            else
-                echo -e "$err_color 达到最大尝试次数，退出。 \033[0m"
-                exit 1
-            fi
         fi
     done
 done
